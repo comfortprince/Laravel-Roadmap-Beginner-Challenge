@@ -29,7 +29,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name"=> "required|unique:App\Models\Category|max:255",
+        ]);
+
+        Category::create([
+            "name"=> $request->name 
+        ]);
+        session()->flash("success","Successfully created a new category.");
+        return redirect()->route("category.index");
+
+        // validate request data
+        // if it's valid
+        //      save it
+        // otherwise
+        //      otherwise route back and show errors
+        // route to category listing and show success message
     }
 
     /**
