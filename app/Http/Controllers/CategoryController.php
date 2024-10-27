@@ -38,13 +38,6 @@ class CategoryController extends Controller
         ]);
         session()->flash("success","Successfully created a new category.");
         return redirect()->route("category.index");
-
-        // validate request data
-        // if it's valid
-        //      save it
-        // otherwise
-        //      otherwise route back and show errors
-        // route to category listing and show success message
     }
 
     /**
@@ -68,7 +61,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            "name"=> "required|unique:App\Models\Category|max:255",
+        ]);
+
+        $oldCategory = Category::findOrFail($id);
+        $oldCategoryName = $oldCategory->name;
+        $oldCategory->update($validated);
+        session()->flash("success","Successfully updated the ". $oldCategoryName ." category.");
+        return redirect()->route("category.index");
     }
 
     /**

@@ -1,4 +1,7 @@
-<x-app-layout x-data="">
+<x-app-layout x-data="{
+    categoryId: '',
+    categoryName: '{{ old('name') }}',
+}">
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -35,7 +38,14 @@
                                             {{ ucfirst($category->name) }}
                                         </td>
                                         <td class="py-3 px-6 text-center">
-                                            <x-primary-button>
+                                            <x-primary-button 
+                                                x-data="" 
+                                                x-on:click.prevent="() => {
+                                                    $dispatch('open-modal', 'category-update');
+                                                    categoryName = '{{ $category->name }}';
+                                                    categoryId = '{{ $category->id }}';
+                                                }"
+                                            >
                                                 Edit
                                             </x-primary-button>
                                             <x-danger-button>
@@ -86,6 +96,44 @@
 
                 <x-primary-button>
                     Create Category
+                </x-primary-button>
+            </form>
+        </div>
+    </x-modal>
+
+    <x-modal 
+        name="category-update"
+        :show="$errors->any()"
+    >
+        <div class="p-4">
+            <h3 class="font-semibold text-lg text-center text-gray-800 dark:text-gray-200 pb-3">
+                Edit Category
+            </h3>
+            <form 
+                x-bind:action="`{{ route('category.update', '') }}/${categoryId}`" 
+                method="post"
+                class="flex flex-col items-center gap-2"
+            >
+                @csrf
+                @method('PUT')
+
+                <x-text-input 
+                    id="name"
+                    name="name"
+                    type="text"
+                    x-bind:value="categoryName"
+                    value="{{ old('name') }}"
+                    placeholder="Name"
+                    required/>
+                
+                @error('name')
+                    <div class="text-sm text-red-600 dark:text-red-400 space-y-1">
+                        {{ $message }} 
+                    </div>
+                @enderror
+
+                <x-primary-button>
+                    Save Category
                 </x-primary-button>
             </form>
         </div>
