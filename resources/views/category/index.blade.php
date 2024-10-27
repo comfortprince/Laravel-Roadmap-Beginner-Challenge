@@ -7,7 +7,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Categories') }}
             </h2>
-            <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'category.create')">
+            <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'create-category')">
                 Create Category
             </x-primary-button>
         </div>
@@ -41,14 +41,21 @@
                                             <x-primary-button 
                                                 x-data="" 
                                                 x-on:click.prevent="() => {
-                                                    $dispatch('open-modal', 'category-update');
+                                                    $dispatch('open-modal', 'update-category');
                                                     categoryName = '{{ $category->name }}';
                                                     categoryId = '{{ $category->id }}';
                                                 }"
                                             >
                                                 Edit
                                             </x-primary-button>
-                                            <x-danger-button>
+                                            <x-danger-button
+                                                x-data="" 
+                                                x-on:click.prevent="() => {
+                                                    $dispatch('open-modal', 'destroy-category');
+                                                    categoryName = '{{ $category->name }}';
+                                                    categoryId = '{{ $category->id }}';
+                                                }"
+                                            >
                                                 Delete
                                             </x-danger-button>
                                         </td>
@@ -64,8 +71,9 @@
         </div>
     </div>
 
+    {{-- Create Category Form --}}
     <x-modal 
-        name="category.create"
+        name="create-category"
         :show="$errors->any()"
     >
         <div class="p-4">
@@ -101,8 +109,9 @@
         </div>
     </x-modal>
 
+    {{-- Edit Category Form --}}
     <x-modal 
-        name="category-update"
+        name="update-category"
         :show="$errors->any()"
     >
         <div class="p-4">
@@ -135,6 +144,36 @@
                 <x-primary-button>
                     Save Category
                 </x-primary-button>
+            </form>
+        </div>
+    </x-modal>
+
+    {{-- Delete Category Form --}}
+    <x-modal 
+        name="destroy-category"
+        :show="$errors->any()"
+    >
+        <div class="p-4">
+            <h3 class="font-semibold text-lg text-center text-gray-800 dark:text-gray-200 pb-3">
+                Are you sure you want to delete category
+            </h3>
+            <form 
+                x-bind:action="`{{ route('category.destroy', '') }}/${categoryId}`" 
+                method="post"
+                class="flex flex-col items-center gap-2"
+            >
+                @csrf
+                @method('DELETE')
+                
+                @if (false)
+                    <div class="text-sm text-red-600 dark:text-red-400 space-y-1">
+                        {{ __('Failed to delete category. Try again later') }} 
+                    </div>
+                @endif
+
+                <x-danger-button>
+                    Delete Category
+                </x-danger-button>
             </form>
         </div>
     </x-modal>
