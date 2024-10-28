@@ -1,4 +1,8 @@
-<x-app-layout>
+<x-app-layout x-data="{
+    tagId : '',
+    tagName : '',
+    tagColor : '#000000'
+}">
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -44,7 +48,15 @@
                                             </span>
                                         </td>
                                         <td class="py-3 px-6 text-center">
-                                            <x-primary-button>
+                                            <x-primary-button
+                                                x-data=""
+                                                x-on:click.prevent="() => {
+                                                    $dispatch('open-modal', 'edit-tag');
+                                                    tagId = '{{ $tag->id }}'
+                                                    tagName = '{{ $tag->name }}';
+                                                    tagColor = '{{ $tag->tag_color }}';
+                                                }"
+                                            >
                                                 Edit
                                             </x-primary-button>
                                             <x-danger-button>
@@ -63,6 +75,7 @@
         </div>
     </div>
 
+    {{-- Form for creating Tags --}}
     <x-modal 
         name="create-tag" 
         :show="$errors->any() && (session('form') === 'tag.create')"
@@ -72,7 +85,7 @@
                 Create Tag
             </h3>
             <form 
-                x-bind:action="{{ route('tag.store') }}`" 
+                x-bind:action="`{{ route('tag.store') }}`" 
                 method="post"
                 class="flex flex-col items-left gap-2"
             >
@@ -118,6 +131,69 @@
 
                 <x-primary-button class="self-start">
                     Create Tag
+                </x-primary-button>
+            </form>
+        </div>
+    </x-modal>
+
+    {{-- Form for editing Tags --}}
+    <x-modal 
+        name="edit-tag" 
+        :show="$errors->any() && (session('form') === 'tag.edit')"
+    >
+        <div class="p-4">
+            <h3 class="font-semibold text-lg text-start text-gray-800 dark:text-gray-200 pb-3">
+                Edit Tag
+            </h3>
+            <form 
+                x-bind:action="`{{ route('tag.update','') }}/${tagId}`"
+                method="post"
+                class="flex flex-col items-left gap-2"
+            >
+                @csrf
+                @method('PUT')
+                
+                <div class="flex flex-col gap-2">
+                    <x-input-label value="Name"></x-input-label>
+
+                    <x-text-input 
+                        type="text" 
+                        name="name" 
+                        id="name"
+                        class="self-start"
+                        value="{{ old('name') }}"
+                        x-bind:value="tagName"
+                        required
+                    />
+
+                    @error('name')
+                        <div class="text-sm text-red-600 dark:text-red-400 space-y-1 self-start">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <x-input-label value="Tag Color"></x-input-label>
+
+                    <x-text-input 
+                        type="color" 
+                        name="tag_color" 
+                        id="tag_color"
+                        value="{{ old('tag_color') }}"
+                        x-bind:value="tagColor"
+                        required
+                    />
+
+                    @error('tag_color')
+                        <div class="text-sm text-red-600 dark:text-red-400 space-y-1">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <x-primary-button class="self-start">
+                    Save Tag
                 </x-primary-button>
             </form>
         </div>
