@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('category', CategoryController::class)
         ->only(['index','store', 'update', 'destroy']);
+
+    Route::resource('tag', TagController::class)
+        ->only(['index']);
 });
 
 require __DIR__.'/auth.php';
