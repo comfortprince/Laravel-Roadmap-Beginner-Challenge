@@ -31,7 +31,10 @@ class TagController extends Controller
     public function store(StoreTagRequest $request)
     {
         $validated = $request->validated();
-        dd($validated);
+
+        Tag::create($validated);
+        session()->flash("success","Successfully created a new tag.");
+        return redirect()->route("tag.index");
     }
 
     /**

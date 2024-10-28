@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTagRequest extends FormRequest
@@ -22,12 +23,16 @@ class StoreTagRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=> "required|unique:App\Models\Category|max:255",
+            "name"=> "required|unique:App\Models\Tag|max:255",
             "tag_color"=> [
                 "required",
                 "regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/",
                 "unique:App\Models\Tag"
             ]
         ];
+    }
+
+    public function failedValidation(Validator $validator){
+        session()->flash("form","tag.create");
     }
 }

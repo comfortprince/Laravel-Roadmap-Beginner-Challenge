@@ -12,9 +12,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            @if (session()->has('success'))
+                <span class="inline-block bg-green-200 border border-green-600 mb-4 rounded-sm text-sm p-2 font-medium">
+                    {{ session('success') }}
+                </span>
+            @endif
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">                
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if (true)
+                    @if ($tags)
                         <table class="w-full bg-white dark:bg-gray-800 shadow rounded-lg">
                             <thead class="w-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase text-sm">
                                 <tr>
@@ -24,35 +30,43 @@
                                 </tr>
                             </thead>
                             <tbody class="text-gray-700 dark:text-gray-200 text-sm font-light">
-                                <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <td class="py-3 px-6 text-left whitespace-nowrap font-medium">
-                                        {{ __('inspirational') }}
-                                    </td>
-                                    <td class="py-3 px-6 text-left whitespace-nowrap font-medium">
-                                        <span class="p-2 inline-flex justify-center bg-green-400 rounded-3xl font-semibold">
-                                            {{ __('inspirational') }}
-                                        </span>
-                                    </td>
-                                    <td class="py-3 px-6 text-center">
-                                        <x-primary-button>
-                                            Edit
-                                        </x-primary-button>
-                                        <x-danger-button>
-                                            Delete
-                                        </x-danger-button>
-                                    </td>
-                                </tr>
+                                @foreach ($tags as $tag)
+                                    <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        <td class="py-3 px-6 text-left whitespace-nowrap font-medium">
+                                            {{ $tag->name }}
+                                        </td>
+                                        <td class="py-3 px-6 text-left whitespace-nowrap font-medium">
+                                            <span 
+                                                class="px-2 py-1 inline-flex justify-center rounded-3xl font-semibold"
+                                                style="background-color: {{ $tag->tag_color }}"                                            
+                                            >
+                                                {{ $tag->name }}
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            <x-primary-button>
+                                                Edit
+                                            </x-primary-button>
+                                            <x-danger-button>
+                                                Delete
+                                            </x-danger-button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     @else
-                        {{ __("No categories to display.") }}
+                        {{ __("No tags to display.") }}
                     @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <x-modal name="create-tag" :show="true">
+    <x-modal 
+        name="create-tag" 
+        :show="$errors->any() && (session('form') === 'tag.create')"
+    >
         <div class="p-4">
             <h3 class="font-semibold text-lg text-start text-gray-800 dark:text-gray-200 pb-3">
                 Create Tag
