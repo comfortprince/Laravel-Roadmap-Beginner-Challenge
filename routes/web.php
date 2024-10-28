@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
         ->only(['index','store', 'update', 'destroy']);
 
     Route::resource('tag', TagController::class)
-        ->only(['index']);
+        ->only(['index', 'store']);
 });
 
 require __DIR__.'/auth.php';
