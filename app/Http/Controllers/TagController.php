@@ -71,6 +71,9 @@ class TagController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tagToBeDeleted = Tag::findOrFail($id);
+        Tag::destroy($id);
+        session()->flash("success","Successfully deleted the " . $tagToBeDeleted->name . " tag");
+        return redirect()->route("tag.index");
     }
 }

@@ -59,7 +59,14 @@
                                             >
                                                 Edit
                                             </x-primary-button>
-                                            <x-danger-button>
+                                            <x-danger-button
+                                                x-data=""
+                                                x-on:click.prevent="() => {
+                                                    $dispatch('open-modal', 'destroy-tag');
+                                                    tagId = '{{ $tag->id }}';
+                                                    tagName = '{{ $tag->name }}';
+                                                }"
+                                            >
                                                 Delete
                                             </x-danger-button>
                                         </td>
@@ -75,7 +82,7 @@
         </div>
     </div>
 
-    {{-- Form for creating Tags --}}
+    {{-- Create Tag Form --}}
     <x-modal 
         name="create-tag" 
         :show="$errors->any() && (session('form') === 'tag.create')"
@@ -136,7 +143,7 @@
         </div>
     </x-modal>
 
-    {{-- Form for editing Tags --}}
+    {{-- Edit Tag Form --}}
     <x-modal 
         name="edit-tag" 
         :show="$errors->any() && (session('form') === 'tag.edit')"
@@ -194,6 +201,37 @@
                 <x-primary-button class="self-start">
                     Save Tag
                 </x-primary-button>
+            </form>
+        </div>
+    </x-modal>
+
+    {{-- Delete Tag Form --}}
+    <x-modal 
+        name="destroy-tag"
+        :show="$errors->any()"
+    >
+        <div class="p-4">
+            <h3 
+                class="font-semibold text-lg text-center text-gray-800 dark:text-gray-200 pb-3"
+                x-text="`Are you sure you want to delete the ${tagName} tag`"
+            ></h3>
+            <form 
+                x-bind:action="`{{ route('tag.destroy', '') }}/${tagId}`" 
+                method="post"
+                class="flex flex-col items-center gap-2"
+            >
+                @csrf
+                @method('DELETE')
+                
+                @if (false)
+                    <div class="text-sm text-red-600 dark:text-red-400 space-y-1">
+                        {{ __('Failed to delete tag. Try again later') }} 
+                    </div>
+                @endif
+
+                <x-danger-button>
+                    Delete Tag
+                </x-danger-button>
             </form>
         </div>
     </x-modal>
