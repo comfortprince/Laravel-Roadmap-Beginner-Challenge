@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
@@ -23,6 +24,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('tag', TagController::class)
         ->only(['index', 'store', 'update', 'destroy']);
+
+    Route::resource('articles', ArticleController::class)
+        ->only(['index']);
 });
 
 require __DIR__.'/auth.php';
