@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -56,9 +57,13 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTagRequest $request, string $id)
     {
-        dd($request->all());
+        $validated = $request->validated();
+        $oldTag = Tag::findOrFail($id);
+        $oldTag->update($validated);
+        session()->flash("success","Successfully updated the " . $oldTag->name . " tag");
+        return redirect()->route("tag.index");
     }
 
     /**

@@ -1,7 +1,7 @@
 <x-app-layout x-data="{
-    tagId : '',
-    tagName : '',
-    tagColor : '#000000'
+    tagId : '{{ session()->has('current-tag-id') ? session('current-tag-id') : '' }}',
+    tagName : '{{ old('name') }}',
+    tagColor : ' {{ old('tag_color') ? old('tag_color') : __('#ffffff') }}'
 }">
     <x-slot name="header">
         <div class="flex justify-between">
@@ -118,7 +118,7 @@
                         type="color" 
                         name="tag_color" 
                         id="tag_color"
-                        value="{{ old('tag_color') }}"
+                        x-bind:value="tagColor"
                         required
                     />
 
@@ -180,7 +180,6 @@
                         type="color" 
                         name="tag_color" 
                         id="tag_color"
-                        value="{{ old('tag_color') }}"
                         x-bind:value="tagColor"
                         required
                     />
