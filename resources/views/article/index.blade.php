@@ -4,9 +4,11 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Articles') }}
             </h2>
-            <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'create-tag')">
-                Create Article
-            </x-primary-button>
+            <a href="{{ route('articles.create') }}">
+                <x-primary-button >
+                    Create Article
+                </x-primary-button>
+            </a>
         </div>
     </x-slot>
 

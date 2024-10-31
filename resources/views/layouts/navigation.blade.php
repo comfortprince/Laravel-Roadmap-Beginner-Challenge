@@ -12,7 +12,10 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+                    <x-nav-link 
+                        :href="route('articles.index')" 
+                        :active="request()->routeIs('articles.index') || request()->routeIs('articles.create')"
+                    >
                         {{ __('Articles') }}
                     </x-nav-link>
                     <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">

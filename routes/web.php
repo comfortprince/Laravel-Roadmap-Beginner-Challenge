@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
         ->only(['index', 'store', 'update', 'destroy']);
 
     Route::resource('articles', ArticleController::class)
-        ->only(['index']);
+        ->only(['index', 'create', 'store']);
 });
 
 require __DIR__.'/auth.php';
