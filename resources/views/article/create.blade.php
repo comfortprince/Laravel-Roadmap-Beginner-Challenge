@@ -15,6 +15,7 @@
                         action="{{ route('articles.store') }}" 
                         method="post"
                         class="flex flex-col"
+                        enctype="multipart/form-data"
                     >
                         @csrf
                         @method('POST')

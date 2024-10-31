@@ -29,6 +29,7 @@ class StoreArticleRequest extends FormRequest
             "tags.*"=> "integer|exists:App\Models\Tag,id",
             "image"=> [
                 "nullable",
+                "image",
                 File::image()
                     ->max(1024)
             ],
