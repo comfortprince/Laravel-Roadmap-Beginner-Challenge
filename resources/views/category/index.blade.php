@@ -15,10 +15,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if(session()->has('success'))
-                <div class="text-green-600 bg-green-600 p-4 border-red-400">
+            @if (session()->has('success'))
+                <span class="inline-block bg-green-200 border border-green-600 mb-4 rounded-sm text-sm p-2 font-medium">
                     {{ session('success') }}
-                </div>
+                </span>
             @endif
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">

@@ -35,13 +35,21 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
         $validated = $request->validated();
-        dd($validated);
-        $article = Article::create($validated);
-
+        $article = new Article();
+        $article->title = $validated["title"];
+        $article->body = $validated["body"];
         $article->category_id = $validated['category'];
         $article->save();
 
-        
+        $article->tags()->attach($validated['tags']);
+
+        if($request->hasFile('image')) {
+            $article->addMediaFromRequest('image')->toMediaCollection('article_images');
+        }
+
+        session()->flash('success','Successfully posted a new article.');
+
+        return redirect()->route('articles.index');
     }
 
     /**
