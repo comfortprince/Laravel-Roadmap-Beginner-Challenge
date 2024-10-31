@@ -36,6 +36,10 @@ class ArticleController extends Controller
     {
         $validated = $request->validated();
         dd($validated);
+        $article = Article::create($validated);
+
+        $article->category_id = $validated['category'];
+        $article->save();
     }
 
     /**
