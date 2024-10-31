@@ -40,6 +40,8 @@ class ArticleController extends Controller
 
         $article->category_id = $validated['category'];
         $article->save();
+
+        
     }
 
     /**
