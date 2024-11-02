@@ -81,7 +81,7 @@
                 Add Category
             </h3>
             <form 
-                action="{{ route('category.store') }}" 
+                action="{{ route('admin.category.store') }}" 
                 method="post"
                 class="flex flex-col items-center gap-2"
             >
@@ -119,7 +119,7 @@
                 Edit Category
             </h3>
             <form 
-                x-bind:action="`{{ route('category.update', '') }}/${categoryId}`" 
+                x-bind:action="`{{ route('admin.category.update', '') }}/${categoryId}`" 
                 method="post"
                 class="flex flex-col items-center gap-2"
             >
@@ -158,7 +158,7 @@
                 Are you sure you want to delete category
             </h3>
             <form 
-                x-bind:action="`{{ route('category.destroy', '') }}/${categoryId}`" 
+                x-bind:action="`{{ route('admin.category.destroy', '') }}/${categoryId}`" 
                 method="post"
                 class="flex flex-col items-center gap-2"
             >

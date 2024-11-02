@@ -35,7 +35,7 @@ class TagController extends Controller
 
         Tag::create($validated);
         session()->flash("success","Successfully created a new tag.");
-        return redirect()->route("tag.index");
+        return redirect()->route("admin.tag.index");
     }
 
     /**
@@ -63,7 +63,7 @@ class TagController extends Controller
         $oldTag = Tag::findOrFail($id);
         $oldTag->update($validated);
         session()->flash("success","Successfully updated the " . $oldTag->name . " tag");
-        return redirect()->route("tag.index");
+        return redirect()->route("admin.tag.index");
     }
 
     /**
@@ -74,6 +74,6 @@ class TagController extends Controller
         $tagToBeDeleted = Tag::findOrFail($id);
         Tag::destroy($id);
         session()->flash("success","Successfully deleted the " . $tagToBeDeleted->name . " tag");
-        return redirect()->route("tag.index");
+        return redirect()->route("admin.tag.index");
     }
 }

@@ -49,7 +49,7 @@ class ArticleController extends Controller
 
         session()->flash('success','Successfully posted a new article.');
 
-        return redirect()->route('articles.index');
+        return redirect()->route('admin.articles.index');
     }
 
     /**

@@ -12,7 +12,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg lg:w-[758px]">                
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form 
-                        action="{{ route('articles.store') }}" 
+                        action="{{ route('admin.articles.store') }}" 
                         method="post"
                         class="flex flex-col"
                         enctype="multipart/form-data"

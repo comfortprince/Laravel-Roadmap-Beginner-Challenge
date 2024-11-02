@@ -92,7 +92,7 @@
                 Create Tag
             </h3>
             <form 
-                x-bind:action="`{{ route('tag.store') }}`" 
+                x-bind:action="`{{ route('admin.tag.store') }}`" 
                 method="post"
                 class="flex flex-col items-left gap-2"
             >
@@ -153,7 +153,7 @@
                 Edit Tag
             </h3>
             <form 
-                x-bind:action="`{{ route('tag.update','') }}/${tagId}`"
+                x-bind:action="`{{ route('admin.tag.update','') }}/${tagId}`"
                 method="post"
                 class="flex flex-col items-left gap-2"
             >
@@ -216,7 +216,7 @@
                 x-text="`Are you sure you want to delete the ${tagName} tag`"
             ></h3>
             <form 
-                x-bind:action="`{{ route('tag.destroy', '') }}/${tagId}`" 
+                x-bind:action="`{{ route('admin.tag.destroy', '') }}/${tagId}`" 
                 method="post"
                 class="flex flex-col items-center gap-2"
             >

@@ -37,7 +37,7 @@ class CategoryController extends Controller
             "name"=> $request->name 
         ]);
         session()->flash("success","Successfully created a new category.");
-        return redirect()->route("category.index");
+        return redirect()->route("admin.category.index");
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoryController extends Controller
         $oldCategoryName = $oldCategory->name;
         $oldCategory->update($validated);
         session()->flash("success","Successfully updated the ". $oldCategoryName ." category.");
-        return redirect()->route("category.index");
+        return redirect()->route("admin.category.index");
     }
 
     /**
@@ -80,6 +80,6 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
         session()->flash("success","Successfully deleted the " .$category->name. " category");
-        return redirect()->route("category.index");
+        return redirect()->route("admin.category.index");
     }
 }

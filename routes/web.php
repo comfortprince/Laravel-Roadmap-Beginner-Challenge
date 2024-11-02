@@ -19,6 +19,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+});
+
+Route::group([
+    'prefix'=> 'admin',
+    'as'=> 'admin.',
+    'middleware'=> ['auth'],
+], function () {
     Route::resource('category', CategoryController::class)
         ->only(['index','store', 'update', 'destroy']);
 
