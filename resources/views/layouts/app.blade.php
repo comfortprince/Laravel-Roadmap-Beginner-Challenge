@@ -18,7 +18,9 @@
     </head>
     <body class="font-sans antialiased">
         <div {{ $attributes->merge(['class' => 'min-h-screen bg-gray-100 dark:bg-gray-900']) }}>
-            @include('layouts.navigation')
+            @isset($navigation)
+                {{ $navigation }}
+            @endisset
 
             <!-- Page Heading -->
             @isset($header)
