@@ -6,10 +6,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -34,6 +30,17 @@ Route::group([
 
     Route::resource('articles', ArticleController::class)
         ->only(['index', 'create', 'store']);
+});
+
+Route::view('about', 'about')
+    ->name('about');
+
+Route::get('/', function () {
+    return view('landing-page');
+});
+
+Route::get('articles/{id}', function ($id) {
+    return 'Specific Article';
 });
 
 require __DIR__.'/auth.php';
