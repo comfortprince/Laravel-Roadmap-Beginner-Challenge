@@ -16,6 +16,12 @@ class Article extends Model implements HasMedia
         "body"
     ];
 
+    // Define media collections
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images')->singleFile();
+    }
+
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class);
     }
