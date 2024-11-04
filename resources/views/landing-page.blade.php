@@ -30,150 +30,36 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-12">
-                <div>
-                    <div class="h-60">
-                        <img 
-                            src="https://images.unsplash.com/photo-1709884732294-90379fee354c?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                            alt="image name"
-                            class="h-full w-full object-cover object-center"
-                        >
-                    </div>
-                    <div>
-                        <div class="mt-2">
-                            2022.11.25
-                        </div>
-                        <h2 class="text-2xl font-semibold my-2">
-                            How jewellery makes you poor.
-                        </h2>
-                        <div class="mt-4">
-                            <x-primary-button type="button">
-                                <a href="">
-                                    READ MORE
-                                </a>
-                            </x-primary-button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="h-60">
-                        <img 
-                            src="https://plus.unsplash.com/premium_photo-1661963063875-7f131e02bf75?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                            alt="image name"
-                            class="h-full w-full object-cover object-center"
-                        >
-                    </div>
-                    <div>
-                        <div class="mt-2">
-                            2022.11.25
-                        </div>
-                        <h2 class="text-2xl font-semibold my-2">
-                            This secret known only by chickens is save your marriage.
-                        </h2>
-                        <div class="mt-4">
-                            <x-primary-button type="button">
-                                <a href="">
-                                    READ MORE
-                                </a>
-                            </x-primary-button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="h-60">
-                        <img 
-                            src="https://plus.unsplash.com/premium_photo-1661889099855-b44dc39e88c9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                            alt="image name"
-                            class="h-full w-full object-cover object-center"
-                        >
-                    </div>
-                    <div>
-                        <div class="mt-2">
-                            2022.11.25
-                        </div>
-                        <h2 class="text-2xl font-semibold my-2">
-                            How diving to the ocean flow can end your money troubles.
-                        </h2>
-                        <div class="mt-4">
-                            <x-primary-button type="button">
-                                <a href="">
-                                    READ MORE
-                                </a>
-                            </x-primary-button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="h-60">
-                        <img 
-                            src="https://images.unsplash.com/photo-1709884732294-90379fee354c?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                            alt="image name"
-                            class="h-full w-full object-cover object-center"
-                        >
-                    </div>
-                    <div>
-                        <div class="mt-2">
-                            2022.11.25
-                        </div>
-                        <h2 class="text-2xl font-semibold my-2">
-                            How jewellery makes you poor.
-                        </h2>
-                        <div class="mt-4">
-                            <x-primary-button type="button">
-                                <a href="">
-                                    READ MORE
-                                </a>
-                            </x-primary-button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="h-60">
-                        <img 
-                            src="https://plus.unsplash.com/premium_photo-1661963063875-7f131e02bf75?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                            alt="image name"
-                            class="h-full w-full object-cover object-center"
-                        >
-                    </div>
-                    <div>
-                        <div class="mt-2">
-                            2022.11.25
-                        </div>
-                        <h2 class="text-2xl font-semibold my-2">
-                            This secret known only by chickens is save your marriage.
-                        </h2>
-                        <div class="mt-4">
-                            <x-primary-button type="button">
-                                <a href="">
-                                    READ MORE
-                                </a>
-                            </x-primary-button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="h-60">
-                        <img 
-                            src="https://plus.unsplash.com/premium_photo-1661889099855-b44dc39e88c9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                            alt="image name"
-                            class="h-full w-full object-cover object-center"
-                        >
-                    </div>
-                    <div>
-                        <div class="mt-2">
-                            2022.11.25
-                        </div>
-                        <h2 class="text-2xl font-semibold my-2">
-                            How diving to the ocean flow can end your money troubles.
-                        </h2>
-                        <div class="mt-4">
-                            <x-primary-button type="button">
-                                <a href="">
-                                    READ MORE
-                                </a>
-                            </x-primary-button>
-                        </div>
-                    </div>
-                </div>
+                @if (count($articles) === 0)
+                    {{ __('No Post to display.') }}
+                @else
+                    @foreach ($articles as $article)
+                        <div>
+                            <div class="h-60">
+                                <img 
+                                    src=" {{ $article->getFirstMediaUrl('article_images') }} " 
+                                    alt="image name"
+                                    class="h-full w-full object-cover object-center"
+                                >
+                            </div>
+                            <div>
+                                <div class="mt-2"> 
+                                    {{ (new DateTime($article->created_at))->format('Y.m.d') }} 
+                                </div>
+                                <h2 class="text-2xl font-semibold my-2">
+                                    {{ $article->title }}
+                                </h2>
+                                <div class="mt-4">
+                                    <x-primary-button type="button">
+                                        <a href=" {{ route('article.show', $article->id) }} ">
+                                            READ MORE
+                                        </a>
+                                    </x-primary-button>
+                                </div>
+                            </div>
+                        </div>        
+                    @endforeach
+                @endif
             </div>
         </section>
     </div>
