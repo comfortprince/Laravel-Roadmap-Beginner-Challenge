@@ -18,4 +18,10 @@ export default {
     },
 
     plugins: [forms],
+
+    safelist: [
+        'roboto-regular', 
+        'text-3xl', 
+        'text-center'      
+    ]
 };

@@ -29,6 +29,31 @@
                 Recent Posts
             </div>
 
+            <div class="mb-6">
+                <form action="">
+                    <select 
+                        name="categoryId" 
+                        id="categoryId"
+                        x-data=""
+                        x-on:change="()=>{
+                            let categoryFormSubmitBtn = document.querySelector('#categoryFormSubmitBtn')
+                            categoryFormSubmitBtn.click()
+                        }"
+                    >
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $category)
+                            <option 
+                                value="{{ $category->id }}"
+                                {{ $category->id == session('categoryId') ? 'selected' : ''  }}
+                            >
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <button id="categoryFormSubmitBtn" hidden>Submit</button>
+                </form>
+            </div>
+
             <div class="grid md:grid-cols-3 gap-12">
                 @if (count($articles) === 0)
                     {{ __('No Post to display.') }}
@@ -49,17 +74,27 @@
                                 <h2 class="text-2xl font-semibold my-2">
                                     {{ $article->title }}
                                 </h2>
+                                <div>
+                                    @foreach ($article->tags as $tag)
+                                        <x-tag style="background-color: {{ $tag->tag_color }}">
+                                            {{ $tag->name }}
+                                        </x-tag>
+                                    @endforeach
+                                </div>
                                 <div class="mt-4">
-                                    <x-primary-button type="button">
-                                        <a href=" {{ route('article.show', $article->id) }} ">
+                                    <a href=" {{ route('article.show', $article->id) }} ">
+                                        <x-primary-button type="button">
                                             READ MORE
-                                        </a>
-                                    </x-primary-button>
+                                        </x-primary-button>
+                                    </a>
                                 </div>
                             </div>
                         </div>        
                     @endforeach
                 @endif
+            </div>
+            <div>
+                {{ $articles->links() }}
             </div>
         </section>
     </div>

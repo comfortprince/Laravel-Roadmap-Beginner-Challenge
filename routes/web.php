@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GuestArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -33,13 +34,8 @@ Route::group([
 
 Route::view('about', 'about')
     ->name('about');
-
-Route::get('/', function () {
-    return view('landing-page');
-});
-
-Route::get('articles/{id}', function ($id) {
-    return 'Specific Article';
-});
+Route::get('/', [GuestArticleController::class, 'index']);
+Route::get('articles/{id}', [GuestArticleController::class, 'show'])
+    ->name('article.show');
 
 require __DIR__.'/auth.php';
