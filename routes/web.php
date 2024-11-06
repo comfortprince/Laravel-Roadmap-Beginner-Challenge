@@ -29,7 +29,7 @@ Route::group([
         ->only(['index', 'store', 'update', 'destroy']);
 
     Route::resource('articles', ArticleController::class)
-        ->only(['index', 'create', 'store']);
+        ->only(['index', 'create', 'store', 'destroy']);
 });
 
 Route::view('about', 'about')

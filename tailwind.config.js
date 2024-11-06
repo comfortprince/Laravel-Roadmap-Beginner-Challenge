@@ -22,6 +22,7 @@ export default {
     safelist: [
         'roboto-regular', 
         'text-3xl', 
-        'text-center'      
+        'text-center',
+        'italic'   
     ]
 };

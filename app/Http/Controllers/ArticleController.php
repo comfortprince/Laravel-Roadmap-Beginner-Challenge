@@ -6,6 +6,7 @@ use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -81,6 +82,14 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        DB::transaction(function () use ($article) {
+            $article->getFirstMedia('article_images')->delete();
+            $article->delete();
+        });
+        
+        session()->flash('success','Successfully deleted an article');
+        return redirect()->route('admin.articles.index');
     }
 }

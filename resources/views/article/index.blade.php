@@ -47,14 +47,24 @@
                                             <x-primary-button>
                                                 {{ __('Edit') }}
                                             </x-primary-button>
-                                            <x-danger-button>
-                                                {{ __('Delete') }}
-                                            </x-danger-button>
+                                            <form 
+                                                action="{{ route('admin.articles.destroy', $article->id) }}"
+                                                method="POST"
+                                                class="inline-block"
+                                            >
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-danger-button>
+                                                    {{ __('Delete') }}
+                                                </x-danger-button>
+                                            </form>
                                         </td>
                                         <td class="py-3 px-6 text-center">
-                                            <x-primary-button>
-                                                {{ __('View Blog') }}
-                                            </x-primary-button>
+                                            <a href="{{ route('article.show', $article->id) }}">
+                                                <x-primary-button>
+                                                    {{ __('View Blog') }}
+                                                </x-primary-button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
