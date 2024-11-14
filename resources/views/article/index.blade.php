@@ -25,7 +25,7 @@
             @endif
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">                
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="p-6 text-gray-900 dark:text-gray-100 overflow-x-auto">
                     @if (count($articles) === 0)
                         {{ __("No articles to display.") }}
                     @else
@@ -43,10 +43,12 @@
                                         <td class="py-3 px-6 text-left whitespace-nowrap font-medium">
                                             {{ $article->title }}
                                         </td>
-                                        <td class="py-3 px-6 text-center">
-                                            <x-primary-button>
-                                                {{ __('Edit') }}
-                                            </x-primary-button>
+                                        <td class="py-3 px-6 text-center flex space-x-2">
+                                            <a href="{{ route('admin.articles.edit', $article->id) }}">
+                                                <x-primary-button>
+                                                    {{ __('Edit') }}
+                                                </x-primary-button>
+                                            </a>
                                             <form 
                                                 action="{{ route('admin.articles.destroy', $article->id) }}"
                                                 method="POST"
@@ -61,7 +63,7 @@
                                         </td>
                                         <td class="py-3 px-6 text-center">
                                             <a href="{{ route('article.show', $article->id) }}">
-                                                <x-primary-button>
+                                                <x-primary-button class="whitespace-nowrap">
                                                     {{ __('View Blog') }}
                                                 </x-primary-button>
                                             </a>

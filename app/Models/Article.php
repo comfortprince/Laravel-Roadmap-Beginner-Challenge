@@ -19,7 +19,8 @@ class Article extends Model implements HasMedia
     // Define media collections
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('images')->singleFile();
+        $this->addMediaCollection('article_images')->singleFile();
+        $this->addMediaCollection('pending_article_images')->singleFile();
     }
 
     public function category(): BelongsTo {
